@@ -10,9 +10,13 @@ Plugin 'nvie/vim-flake8'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Change cursor shape between insert and normal mode (iterm2)
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" toggle the current line highlight off when insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+" and make it fast
+set ttimeout
+set ttimeoutlen=1
+"set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+set ttyfast
 
 "autocompletion
 let complete = ".,t,i"
@@ -32,30 +36,12 @@ function! Tab_Or_Complete()
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
-"side tree
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 15
-"let g:netrw_chgwin=2
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"  autocmd VimEnter * :wincmd p
-"augroup END
-"aug netrw_close
-"  au!
-"  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw"|q|endif
-"aug END
-
 " ctrl-p
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_map = '<c-p>'
 map <C-b> :CtrlPBuffer <CR>
 
 "classic vim parameters
-
 set number      " Affiche les numéros de ligne
 set smartindent " Indentation intelligente
 set autoindent  " Conserve l'indentation sur une nouvelle ligne
@@ -119,3 +105,8 @@ nmap <C-N><C-N> :set invnumber<CR>
 
 "remove trailing whitespaces for every save
 autocmd BufWritePre * %s/\s\+$//e
+
+"more natural splitting, splitting in grey
+set splitbelow
+set splitright
+highlight VertSplit ctermbg=grey
