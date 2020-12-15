@@ -3,12 +3,18 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'python/black'
 Plugin 'AutoComplPop'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'psf/black'
 Plugin 'nvie/vim-flake8'
+Plugin 'vim-prettier'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" formatting
+let g:prettier#config#tab_width = 4
+let g:prettier#config#print_width = 120
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.py Black
 
 " toggle the current line highlight off when insert mode
 autocmd InsertEnter,InsertLeave * set cul!
@@ -36,11 +42,6 @@ function! Tab_Or_Complete()
 endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
-" ctrl-p
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_map = '<c-p>'
-map <C-b> :CtrlPBuffer <CR>
-
 "classic vim parameters
 set number      " Affiche les numéros de ligne
 set smartindent " Indentation intelligente
@@ -48,9 +49,10 @@ set autoindent  " Conserve l'indentation sur une nouvelle ligne
 set ruler       " Affiche la position du curseur
 set title
 set scrolloff=3
-set tabstop=2
-set softtabstop=2
-set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab "converts tabs to space
 set wildmenu
 set showmatch
 set incsearch
@@ -62,18 +64,16 @@ syntax enable
 set mouse=a
 "set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
 set backspace=indent, eol "sane backspace
-"set scrolloff=10
-"nnoremap p "0p
 
+"colors
 colorscheme vim-monokai-tasty
 set t_Co=256
 hi CursorLine ctermbg=238
 set cursorline
-"hi CursorColumn ctermbg=238
-"set cursorcolumn
 highlight ColorColumn ctermbg=235
 let &colorcolumn="80"
 
+"statusline
 set statusline+=@\%{hostname()}\ %F
 set ls=2
 
@@ -81,15 +81,14 @@ nnoremap n nzz
 nnoremap N Nzz
 "nnoremap <C-j> <C-w><C-j>
 "nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-nnoremap <C-h> <C-w><C-h>
+"nnoremap <C-l> <C-w><C-l>
+"nnoremap <C-h> <C-w><C-h>
 
 "diable arrow keys in command mode
 no <left> <Nop>
 no <right> <Nop>
 no <up> <Nop>
 no <down> <Nop>
-
 "disable arrow keys in insert mode
 ino <left> <Nop>
 ino <right> <Nop>
