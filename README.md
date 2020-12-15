@@ -9,8 +9,12 @@ cd ~
 git clone git@github.com:acordier16/tools.git
 cp tools/.vimrc ~
 cp -r tools/.vim ~
+cd ~/.vim/bundle/
+git clone git@github.com:prettier/vim-prettier.git
+cd ~
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+~/.vim/black/bin/pip install black
 ```
 
 ### Setting-up iTerm
