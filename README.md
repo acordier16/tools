@@ -27,7 +27,7 @@ Need to upload .git/config, and tmux conf if I have one.
 ### Running autossh in the background
 
 ```shell
-autossh -M 0 -f -T -N tanidia & autossh -M 0 -f -T -N duncan & autossh -M 0 -f -T -N waff & autossh -M 0 -f -T -N yueh &
+autossh -M 0 -f -T -N machine1 & autossh -M 0 -f -T -N machine2 &
 ````
 
 ### Allow scrolling in tmux
