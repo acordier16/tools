@@ -66,7 +66,8 @@ set mouse=a
 set backspace=indent, eol "sane backspace
 
 "colors
-colorscheme vim-monokai-tasty
+"colorscheme vim-monokai-tasty
+set termguicolors
 set t_Co=256
 hi CursorLine ctermbg=238
 set cursorline
@@ -109,3 +110,12 @@ autocmd BufWritePre * %s/\s\+$//e
 set splitbelow
 set splitright
 highlight VertSplit ctermbg=grey
+
+" jump to last known cursor position when opening file
+augroup curpos
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+  \ endif
+augroup END
