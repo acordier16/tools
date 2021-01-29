@@ -66,12 +66,14 @@ set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
 set backspace=indent, eol "sane backspace
 
 "colors
-colorscheme vim-monokai-tasty
-"set termguicolors
+"colorscheme vim-monokai-tasty
+set termguicolors
 set t_Co=256
+set background=dark
 hi CursorLine ctermbg=238
 set cursorline
-highlight ColorColumn ctermbg=235
+"highlight ColorColumn ctermbg=235
+highlight ColorColumn ctermbg=238 guibg=grey
 let &colorcolumn="80"
 
 "statusline
