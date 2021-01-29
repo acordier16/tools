@@ -62,12 +62,12 @@ let python_highlight_all=1
 syntax on
 syntax enable
 set mouse=a
-"set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
+set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
 set backspace=indent, eol "sane backspace
 
 "colors
-"colorscheme vim-monokai-tasty
-set termguicolors
+colorscheme vim-monokai-tasty
+"set termguicolors
 set t_Co=256
 hi CursorLine ctermbg=238
 set cursorline
