@@ -1,20 +1,25 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'AutoComplPop'
-Plugin 'psf/black'
-Plugin 'nvie/vim-flake8'
-Plugin 'vim-prettier'
-call vundle#end()            " required
+call plug#begin()
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plug 'psf/black'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'nvie/vim-flake8'
+Plug 'vimwiki/vimwiki'
+Plug 'morhetz/gruvbox'
+call plug#end()
+"packloadall
 filetype plugin indent on    " required
+filetype plugin on
 
 " formatting
 let g:prettier#config#tab_width = 4
 let g:prettier#config#print_width = 120
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-autocmd BufWritePre *.py Black
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+" removed *.md
+"autocmd BufWritePre *.py Black
 
 " toggle the current line highlight off when insert mode
 autocmd InsertEnter,InsertLeave * set cul!
@@ -65,8 +70,12 @@ set mouse=a
 set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
 set backspace=indent, eol "sane backspace
 
-"colors
 "colorscheme vim-monokai-tasty
+"gruvbox options
+autocmd vimenter * ++nested colorscheme gruvbox
+let g:gruvbox_contrast_dark = "hard"
+
+"colors
 set termguicolors
 set t_Co=256
 set background=dark
@@ -121,3 +130,6 @@ augroup curpos
     \   exe "normal! g`\"" |
   \ endif
 augroup END
+
+" map space to leader key (for vim-wiki)
+map <Space> <Leader>
