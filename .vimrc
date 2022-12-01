@@ -67,22 +67,20 @@ let python_highlight_all=1
 syntax on
 syntax enable
 set mouse=a
-set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
+"set clipboard^=unnamed,unnamedplus "use system clipboard for yank/put/delete
 set backspace=indent, eol "sane backspace
 
 "colorscheme vim-monokai-tasty
 "gruvbox options
-autocmd vimenter * ++nested colorscheme gruvbox
+colorscheme gruvbox
 let g:gruvbox_contrast_dark = "hard"
 
 "colors
 set termguicolors
 set t_Co=256
-set background=dark
 hi CursorLine ctermbg=238
 set cursorline
-"highlight ColorColumn ctermbg=235
-highlight ColorColumn ctermbg=238 guibg=grey
+highlight ColorColumn ctermbg=235
 let &colorcolumn="80"
 
 "statusline
