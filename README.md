@@ -28,8 +28,24 @@ Need to upload .git/config, and tmux conf if I have one.
 autossh -M 0 -f -T -N machine1 & autossh -M 0 -f -T -N machine2 &
 ````
 
-### Allow scrolling in tmux
+### Tmux configuration
 
+#### Allow scrolling
 ```tmux
 set -g mouse on 
+```
+
+#### Fix ESC lag time
+```tmux
+set -sg escape-time 10
+```
+
+#### Get proper colors
+```tmux
+set-option -sa terminal-overrides ",xterm*:Tc"
+```
+
+You can add all of the above in `~/.tmux.conf`, and then sourcing by running in your shell:
+```shell
+tmux source-file ~/.tmux.conf
 ```
