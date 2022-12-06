@@ -76,8 +76,14 @@ colorscheme gruvbox
 let g:gruvbox_contrast_dark = "hard"
 
 "colors
-set termguicolors
-set t_Co=256
+"fix for colors working in tmux
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+  set t_Co=256
+  set background=dark
+endif
 hi CursorLine ctermbg=238
 set cursorline
 highlight ColorColumn ctermbg=235
@@ -89,10 +95,6 @@ set ls=2
 
 nnoremap n nzz
 nnoremap N Nzz
-"nnoremap <C-j> <C-w><C-j>
-"nnoremap <C-k> <C-w><C-k>
-"nnoremap <C-l> <C-w><C-l>
-"nnoremap <C-h> <C-w><C-h>
 
 "diable arrow keys in command mode
 no <left> <Nop>
